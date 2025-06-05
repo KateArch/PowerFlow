@@ -1,5 +1,6 @@
-{{ config(materialized='view')}}
+{{ config(materialized="view") }}
 
 
-SELECT * from {{ source('powerflow','registrations')}}
+select *
+from {{ source("powerflow", "registrations") }}
 where user_id is not null

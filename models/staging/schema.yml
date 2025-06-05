@@ -5,7 +5,7 @@ sources:
     database: powerflow #name of database
     schema: public
     tables:   #name all of the tables you would reference in the models
-      - name: registrations
+      - name: registrations_clean
         description: Users registration data
         columns:
           - name: user_id
@@ -23,4 +23,38 @@ sources:
       - name: appsflyer
       - name: google_ads
       - name: transactions
-     
+      - name: registrations
+
+models:
+  - name: registrations_clean
+    columns: 
+      - name: user_id
+        tests: #tests that would be run on the column
+          - unique
+  - name: marketing_attribution 
+    columns: 
+      - name: device_id
+        tests:
+            - unique
+            - not_null
+      - name: attribution_cost
+        tests:
+            - not_null
+  - name: ltv
+    columns: 
+        - name: reg_date
+          tests:
+              - not_null
+        - name: transaction_date
+          tests:
+            - not_null
+  - name: roi
+    columns: 
+        - name: attribution_cost
+          tests:
+              - not_null
+        - name: roi
+          tests:
+            - not_null        
+
+      
