@@ -1,7 +1,3 @@
-{{
-    config(
-        materialized='view'
-    )
-}}
-SELECT *
-FROM {{ source('powerflow', 'transactions') }}
+{{ config(materialized="view") }}
+select *
+from {{ source("powerflow", "transactions") }}
