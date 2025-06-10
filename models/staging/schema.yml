@@ -40,6 +40,8 @@ models:
       - name: attribution_cost
         tests:
             - not_null
+            - dbt_utils.expression_is_true:
+                expression: ">=0"
   - name: ltv
     columns: 
         - name: reg_date
